@@ -2,6 +2,7 @@
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import ProductList from '../Components/Products/ProductList.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import Loading from '../Components/Loading.vue';
 
 defineProps({
     canLogin: Boolean,
@@ -12,7 +13,10 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Welcome" />
+    <Head title="Welcome">
+        <title>Welcome</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css">
+    </Head>
 
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0">
         <Link :href="route('index')" class="hidden fixed top-0 left-0 px-6 py-4 sm:block">
@@ -33,7 +37,12 @@ defineProps({
                 </Link>
             </template>
         </div>
-        <ProductList />
+        <Suspense>
+            <ProductList />
+            <template #fallback>
+                <Loading />
+            </template>
+        </Suspense>
     </div>
 </template>
 
