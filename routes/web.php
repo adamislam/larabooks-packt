@@ -22,10 +22,10 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('index');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/wishlist', function () {
+    return Inertia::render('Wishlist');
+})->middleware(['auth', 'verified'])->name('wishlist');
 
 require __DIR__.'/auth.php';
