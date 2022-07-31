@@ -20,6 +20,7 @@ const props = defineProps({
 <template>
     <Head title="Product">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css">
+        <link rel="icon" type="image/x-icon" href="/assets/logo/favicon.png">
     </Head>
 
     <div class="relative flex flex-wrap items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0 page-container">

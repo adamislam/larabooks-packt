@@ -19,6 +19,7 @@ const products = wishlistStore.wishlists.map(w => JSON.parse(w.product))
 <template>
     <Head title="Packt | Wishlist">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css">
+        <link rel="icon" type="image/x-icon" href="/assets/logo/favicon.png">
     </Head>
 
     <AuthenticatedLayout>
