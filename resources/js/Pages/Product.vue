@@ -1,9 +1,17 @@
 <script setup>
 import ProductContainer from '../Components/Products/ProductContainer.vue';
-import Authenticated from '../../../vendor/laravel/breeze/stubs/inertia-vue/resources/js/Layouts/Authenticated.vue';
+import { Head, Link } from '@inertiajs/inertia-vue3';
+import NavBar from '../Components/NavBar.vue';
+import Loading from '../Components/Loading.vue';
 
 const props = defineProps({
-    productId: String
+    productId: String,
+    isWishlisted: Boolean,
+
+    canLogin: Boolean,
+    canRegister: Boolean,
+    laravelVersion: String,
+    phpVersion: String,
 })
 
 </script>
@@ -13,17 +21,15 @@ const props = defineProps({
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css">
     </Head>
 
-    <AuthenticatedLayout>
-
+    <div class="relative flex flex-wrap items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0 page-container">
+        <NavBar ...props="props" />
         <Suspense>
-            <div class="product-container">
-                <ProductContainer :productId="props.productId" />
-            </div>
+            <ProductContainer :productId="props.productId" :isWishlisted="props.isWishlisted" />
             <template #fallback>
                 <Loading />
             </template>
         </Suspense>
-    </AuthenticatedLayout>
+    </div>
 
 </template>
 
