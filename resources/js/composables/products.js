@@ -15,7 +15,7 @@ export async function getProducts(page = 1) {
 
 export async function getProduct(id) {
     if(!id) return
-    const url = `https://api.packt.com/api/v1/products/{id}`
+    const url = `https://api.packt.com/api/v1/products/${id}`
 
     const { data, error } = await useFetch(url, {})
 
@@ -23,5 +23,4 @@ export async function getProduct(id) {
         error,
         data
     }
-
 }

@@ -17,7 +17,6 @@ const props = defineProps({
 })
 
 const wishlistStore = useWishlist()
-console.log({wishlists: props.wishlists})
 wishlistStore.saveWishlist(props.wishlists)
 </script>
 

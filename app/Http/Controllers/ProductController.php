@@ -33,7 +33,7 @@ class ProductController extends Controller
     public function getProduct(Request $request, $id)
     {
         return Inertia::render('Product', [
-            'id' => $id
+            'productId' => $id
         ]);
     }
 }
