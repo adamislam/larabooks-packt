@@ -3,6 +3,7 @@ import ProductContainer from '../Components/Products/ProductContainer.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import NavBar from '../Components/NavBar.vue';
 import Loading from '../Components/Loading.vue';
+import Footer from '../Components/Footer.vue';
 
 const props = defineProps({
     productId: String,
@@ -30,7 +31,7 @@ const props = defineProps({
             </template>
         </Suspense>
     </div>
-
+    <Footer />
 </template>
 
 <style lang="scss" scoped>

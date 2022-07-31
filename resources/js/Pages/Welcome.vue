@@ -5,6 +5,7 @@ import Loading from '../Components/Loading.vue';
 import CategorySelect from '../Components/Products/CategorySelect.vue';
 import { useWishlist } from '../store/wishlist'
 import NavBar from '../Components/NavBar.vue';
+import Footer from '../Components/Footer.vue';
 
 const props = defineProps({
     canLogin: Boolean,
@@ -33,6 +34,7 @@ wishlistStore.saveWishlist(props.wishlists)
             </template>
         </Suspense>
     </div>
+    <Footer />
 </template>
 
 <style scoped lang="scss">

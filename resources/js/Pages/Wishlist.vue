@@ -3,6 +3,7 @@ import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import { useWishlist } from '../store/wishlist';
 import ProductItem from '../Components/Products/ProductItem.vue';
+import Footer from '../Components/Footer.vue';
 
 const props = defineProps({
     wishlists: Array
@@ -40,6 +41,7 @@ const products = wishlistStore.wishlists.map(w => JSON.parse(w.product))
             <ProductItem v-for="p in products" :key="p.id" :product="p" class="product-item"></ProductItem>
         </div>
     </AuthenticatedLayout>
+    <Footer />
 </template>
 
 <style lang="scss" scoped>

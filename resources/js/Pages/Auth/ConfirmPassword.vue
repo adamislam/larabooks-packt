@@ -5,6 +5,7 @@ import Input from '@/Components/Input.vue';
 import Label from '@/Components/Label.vue';
 import ValidationErrors from '@/Components/ValidationErrors.vue';
 import { Head, useForm } from '@inertiajs/inertia-vue3';
+import Footer from '../../Components/Footer.vue';
 
 const form = useForm({
     password: '',
@@ -40,4 +41,5 @@ const submit = () => {
             </div>
         </form>
     </GuestLayout>
+    <Footer />
 </template>

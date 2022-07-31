@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import Button from '@/Components/Button.vue';
 import GuestLayout from '@/Layouts/Guest.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import Footer from '../../Components/Footer.vue';
 
 const props = defineProps({
     status: String,
@@ -39,4 +40,6 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
             </div>
         </form>
     </GuestLayout>
+
+    <Footer />
 </template>
