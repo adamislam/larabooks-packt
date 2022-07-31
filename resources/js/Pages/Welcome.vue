@@ -6,13 +6,19 @@ import Loading from '../Components/Loading.vue';
 import Dropdown from '../../../vendor/laravel/breeze/stubs/inertia-vue/resources/js/Components/Dropdown.vue';
 import DropdownLink from '../../../vendor/laravel/breeze/stubs/inertia-vue/resources/js/Components/DropdownLink.vue';
 import CategorySelect from '../Components/Products/CategorySelect.vue';
+import { useWishlist } from '../store/wishlist'
 
-defineProps({
+const props = defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
+    wishlists: Array,
 })
+
+const wishlistStore = useWishlist()
+console.log({wishlists: props.wishlists})
+wishlistStore.saveWishlist(props.wishlists)
 </script>
 
 <template>

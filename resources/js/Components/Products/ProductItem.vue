@@ -1,4 +1,8 @@
 <script setup>
+import { Inertia } from '@inertiajs/inertia';
+import { computed } from '@vue/reactivity';
+import { useWishlist } from '../../store/wishlist';
+
     const {
         product
     } = defineProps({
@@ -8,6 +12,24 @@
         }
     });
 
+
+    const wishlistStore = useWishlist()
+
+    const  saveWishlist = () => {
+        Inertia.post('/wishlist', {
+            product
+        })
+        wishlistStore.addRemoveFromWishlist(product)
+    }
+
+    const openProduct = () => {
+        Inertia.get(`/product/${product.id}`)
+    }
+
+
+    const isWishlisted = computed(() => !!wishlistStore.wishlists.find(w => w.product_id == product.id))
+
+
 </script>
 
 <template>
@@ -15,15 +37,8 @@
 
         <div class="overview-info">
             <div class="actions">
-                <div class="backbutton ">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M1.02698 11.9929L5.26242 16.2426L6.67902 14.8308L4.85766 13.0033L22.9731 13.0012L22.9728 11.0012L4.85309 11.0033L6.6886 9.17398L5.27677 7.75739L1.02698 11.9929Z"
-                            fill="currentColor" />
-                    </svg>
-                </div>
-                <div class="cart-button neuro-button">
-                    <span class="mdi mdi-heart-outline"></span>
+                <div class="wishlist-button neuro-button" @click="saveWishlist">
+                    <span class="mdi" :class="[isWishlisted ? 'mdi-heart': 'mdi-heart-outline']"></span>
                 </div>
             </div>
 
@@ -42,7 +57,7 @@
                 </div>
 
 
-                <div class="product-image">
+                <div @click="openProduct" class="product-image">
                     <img :src="product.image" alt="product: ps5 controller image">
                 </div>
 
@@ -150,35 +165,18 @@
 
     .actions {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         margin-bottom: 32px;
 
-        .cart-button {
+        .wishlist-button {
             position: relative;
-        }
-
-        .cart-button::after {
-            content: '';
-            display: block;
-            width: 8px;
-            height: 8px;
-            background-image: linear-gradient(90deg, #489be2, #0f629c);
-            border-radius: 50%;
-            position: absolute;
-            top: 11px;
-            right: 8px;
-        }
-
-        .cart-button svg {
-            color: #ababab73;
-        }
-
-        .backbutton,
-        .cart-button {
-
+            cursor: pointer;
             width: 40px;
             height: 40px;
             border-radius: 50%;
+            svg {
+                color: #ababab73;
+            }
         }
 
         .neuro-button {
@@ -202,6 +200,7 @@
         margin-bottom: 50px;
 
         .product-image {
+            cursor: pointer;
             position: absolute;
             width: 250px;
             height: auto;

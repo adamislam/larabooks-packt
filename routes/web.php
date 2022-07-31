@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -15,17 +17,11 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-})->name('index');
+Route::get('/', [ProductController::class, 'index'])->name('index');
 
-Route::get('/wishlist', function () {
-    return Inertia::render('Wishlist');
-})->middleware(['auth', 'verified'])->name('wishlist');
+Route::get('/wishlist',[WishlistController::class, 'index'])->middleware(['auth', 'verified'])->name('wishlist');
+Route::post('/wishlist', [WishlistController::class, 'save'])->middleware(['auth', 'verified'])->name('wishlist');
+
+Route::get('/product/{id}',[ProductController::class, 'getProduct'])->name('product');
 
 require __DIR__.'/auth.php';

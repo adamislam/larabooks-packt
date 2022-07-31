@@ -7,7 +7,7 @@ export async function useFetch(url, params = {}) {
 
     const urlWithQueryParam = `${url}?${new URLSearchParams(params)}`
     try {
-        const res  = await fetch(urlWithQueryParam, {
+        const res = await fetch(urlWithQueryParam, {
             headers: new Headers({
                 'Authorization': `Bearer ${token}`,
                 'Accept': 'application/json'
@@ -15,10 +15,12 @@ export async function useFetch(url, params = {}) {
         })
 
         data.value = await res.json()
-    }
-    catch (err) {
+    } catch (err) {
         error.value = err
     }
 
-    return { data, error }
-  }
+    return {
+        data,
+        error
+    }
+}

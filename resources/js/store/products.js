@@ -27,7 +27,7 @@ export const useProductStore = defineStore('product', () => {
     const current_page = ref(1)
     const from = ref(1)
     const last_page = ref(1)
-    const per_page = ref(100)
+    const per_page = ref(20)
     const to = ref(1)
     const total = ref(0)
 

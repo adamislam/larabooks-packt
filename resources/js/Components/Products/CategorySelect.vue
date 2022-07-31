@@ -79,7 +79,7 @@ import { useCategoryStore } from '../../store/categories';
             width: 100%;
             font-family: 'Ek Mukta';
             font-weight: 600;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             height: 4rem;
             font-size: 1.1rem;
             padding: 1rem;
@@ -88,7 +88,7 @@ import { useCategoryStore } from '../../store/categories';
             transition: .3s ease-in-out;
 
             &::-webkit-input-placeholder {
-                color: #3333;
+                color: var(--light-color);
             }
 
             &:hover {

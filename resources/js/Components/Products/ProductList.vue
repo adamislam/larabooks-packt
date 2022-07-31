@@ -3,6 +3,7 @@ import { getProducts } from '../../composables/products.js'
 import ProductItem from './ProductItem.vue';
 
 import { useProductStore }  from "../../store/products";
+import Pagination from '../Pagination.vue';
 
 const store = useProductStore()
 
@@ -13,10 +14,11 @@ store.setProducts(data.value)
 </script>
 
 <template>
+    <Pagination />
     <div class="product-container" v-if="!error">
-        <!-- <div class="h1">Total {{ total }}</div> -->
         <ProductItem v-for="p in store.products" :key="p.id" :product="p" class="product-item"></ProductItem>
     </div>
+    <Pagination />
 </template>
 
 <style lang="scss" scoped>
