@@ -39,6 +39,11 @@ const pages = computed(() => {
 <style lang="scss" scoped>
 
 .pagination-container {
+
+    --light-color: #ff7148;
+    --dark-color: #f60;
+    --text-color: #D5E1EF;
+
 	margin-top: 1em;
 	padding-top: 2em;
 	border-top: 1px solid #d7dadb;
@@ -55,7 +60,7 @@ const pages = computed(() => {
 
     &:hover,
 	&.is-active {
-		background-color: #fa4248;
+		background-color: var(--dark-color);
 		border-right: 1px solid #fff;
 
 		.pagination-link {
@@ -125,7 +130,7 @@ const pages = computed(() => {
     }
 
     &:hover {
-        color: #fa4248;
+        color: var(--light-color);
     }
 }
 
