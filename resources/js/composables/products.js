@@ -1,4 +1,3 @@
-import { ref } from "vue"
 import { useFetch } from "./fetch"
 
 export async function getProducts(page = 1) {
@@ -9,13 +8,7 @@ export async function getProducts(page = 1) {
 
     return {
         error,
-        products: data.value.products,
-        current_page: data.value.current_page,
-        from: data.value.from,
-        last_page: data.value.last_page,
-        per_page: data.value.per_page,
-        to: data.value.to,
-        total: data.value.total,
+        data
     }
 
 }

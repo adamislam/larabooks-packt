@@ -1,7 +1,12 @@
 <script setup>
-const { product } = defineProps({
-    product: {type:Object, required: true}
-  });
+    const {
+        product
+    } = defineProps({
+        product: {
+            type: Object,
+            required: true
+        }
+    });
 
 </script>
 
@@ -47,40 +52,42 @@ const { product } = defineProps({
         <!-- overview info -->
 
         <div class="product-specifications">
-            <h1>{{ product.concept }}</h1>
-            <p>{{ product.title }}</p>
+            <div class="info-container">
+                <h1>{{ product.title }}</h1>
+                <p>{{ product.concept }}</p>
 
-            <div class="product-features">
-                <div class="feature">
-                    <div class="feature-icon mdi mdi-account-box">
+                <div class="product-features">
+                    <div class="feature">
+                        <div class="feature-icon mdi mdi-account-box">
+                        </div>
+                        <div class="feature-text">
+                            <p> <strong>Authors</strong></p>
+                            <p>{{ product.authors[0] }}</p>
+                        </div>
                     </div>
-                    <div class="feature-text">
-                        <p> <strong>Authors</strong></p>
-                        <p>{{ product.authors[0] }}</p>
+                    <div class="feature" v-if="product.language">
+                        <div class="feature-icon mdi mdi-language-php">
+                        </div>
+                        <div class="feature-text">
+                            <p> <strong>Language</strong></p>
+                            <p>{{ product.language }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="feature" v-if="product.language">
-                    <div class="feature-icon mdi mdi-language-php">
+                    <div class="feature" v-if="product.tool">
+                        <div class="feature-icon mdi mdi-hammer-wrench">
+                        </div>
+                        <div class="feature-text">
+                            <p> <strong>Tool</strong></p>
+                            <p>{{ product.tool }}</p>
+                        </div>
                     </div>
-                    <div class="feature-text">
-                        <p> <strong>Language</strong></p>
-                        <p>{{ product.language }}</p>
-                    </div>
-                </div>
-                <div class="feature" v-if="product.tool">
-                    <div class="feature-icon mdi mdi-hammer-wrench">
-                    </div>
-                    <div class="feature-text">
-                        <p> <strong>Tool</strong></p>
-                        <p>{{ product.tool }}</p>
-                    </div>
-                </div>
-                <div class="feature" v-if="product.vendor">
-                    <div class="feature-icon mdi mdi-domain">
-                    </div>
-                    <div class="feature-text">
-                        <p> <strong>Vendor</strong></p>
-                        <p>{{ product.vendor }}</p>
+                    <div class="feature" v-if="product.vendor">
+                        <div class="feature-icon mdi mdi-domain">
+                        </div>
+                        <div class="feature-text">
+                            <p> <strong>Vendor</strong></p>
+                            <p>{{ product.vendor }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,10 +119,13 @@ const { product } = defineProps({
     a {
         text-decoration: none;
         color: var(--text-color);
-        &:active, &:visited {
+
+        &:active,
+        &:visited {
             text-decoration: none;
         }
     }
+
     .wrapper {
         margin: 0.7rem 0;
         --bg-shape-color: linear-gradient(120deg, #2b2b2b, #0F1620);
@@ -170,16 +180,18 @@ const { product } = defineProps({
             height: 40px;
             border-radius: 50%;
         }
+
+        .neuro-button {
+            background-image: var(--bg-shape-color);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 3px 4px 5px 0px rgba(197, 197, 197, 0.1), inset 3px 6px 6px 5px rgba(78, 77, 77, 0.1), -2px -2px 8px 2px rgba(255, 255, 255, 0.1), 2px 2px 6px 3px rgba(0, 0, 0, 0.4);
+        }
     }
 
-    .neuro-button {
-        background-image: var(--bg-shape-color);
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: inset 3px 4px 5px 0px rgba(197, 197, 197, 0.1), inset 3px 6px 6px 5px rgba(78, 77, 77, 0.1), -2px -2px 8px 2px rgba(255, 255, 255, 0.1), 2px 2px 6px 3px rgba(0, 0, 0, 0.4);
-    }
 
     .product-info {
         display: flex;
@@ -188,89 +200,84 @@ const { product } = defineProps({
         position: relative;
         min-height: 200px;
         margin-bottom: 50px;
-    }
 
-    .product-image {
-        position: absolute;
-        width: 250px;
-        height: auto;
-        right: 0rem;
-        img {
-            width: 80%;
+        .product-image {
+            position: absolute;
+            width: 250px;
             height: auto;
-            margin-left:auto;
+            right: 0rem;
+
+            img {
+                width: 80%;
+                height: auto;
+                margin-left: auto;
+            }
+
+            transition: ease 0.8s all;
+
+            &:hover {
+                transform: scale(1.1);
+            }
         }
 
-        transition: ease 0.8s all;
+        .group-text {
+            z-index: 10;
+            width: min-content;
 
-        &:hover {
-            transform: scale(1.1);
+            h3 {
+                letter-spacing: 3.2px;
+                font-size: 14px;
+                font-weight: 500;
+                margin-bottom: 8px;
+                text-transform: uppercase;
+            }
+
+            p {
+                font-size: 12px;
+                opacity: 0.8;
+            }
+
         }
-    }
-
-
-    h1 {
-        font-family: 'Michroma', sans-serif;
-    }
-
-    .group-text {
-        z-index:10;
-        width: min-content;
-        h3 {
-            letter-spacing: 3.2px;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        p {
-            font-size: 12px;
-            opacity: 0.8;
-        }
-
-    }
-
-
-    /* product specifications */
-    .feature-icon {
-        width: 40px;
-        height: 40px;
-        background-image: var(--bg-shape-color);
-        border-radius: 8px;
-        margin-right: 16px;
-        font-size: 2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     .product-specifications {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 50%;
+        min-height: 360px;
 
         h1 {
-            margin-top: 10px;
-            margin-bottom: 16px;
-            font-size: 32px;
+            font-family: 'Michroma', sans-serif;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            font-size: 24px;
         }
 
         p {
             opacity: 0.8;
-            font-size: 15px;
-            line-height: 1.5;
+            font-size: 12px;
         }
 
         .product-features {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            margin-top: 20px;
-            grid-row-gap: 16px;
+            margin-top: 10px;
+            grid-row-gap: 10px;
 
             .feature {
                 display: flex;
+            }
+
+            .feature-icon {
+                width: 40px;
+                height: 40px;
+                background-image: var(--bg-shape-color);
+                border-radius: 8px;
+                margin-right: 16px;
+                font-size: 2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
     }
@@ -284,49 +291,48 @@ const { product } = defineProps({
         border-radius: 12px;
         overflow: hidden;
         box-shadow: -2px -2px 2px 0px rgba(80, 80, 80, 0.1), 2px 2px 3px 0px rgba(12, 12, 12, 0.3), inset 0px 0px 0px 2px rgba(80, 80, 80, 0.2);
-        margin-top: 24px;
-        padding: 14px;
+        margin-top: 12px;
+        padding: 10px;
 
         justify-content: space-between;
         align-items: center;
-    }
 
-    .price-tag {
-        display: flex;
-        align-items: center;
-        font-size: 32px;
-    }
+        .price-tag {
+            display: flex;
+            align-items: center;
+            font-size: 32px;
 
-    .price-tag span {
-        color: #488dc7;
-        font-size: 20px;
-    }
+            span {
+                color: #488dc7;
+                font-size: 20px;
+            }
+        }
 
+        /* checkout button*/
+        button.pre-order {
+            outline: 0;
+            border: 0;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background-image: linear-gradient(85deg, #61c7ef, #4833fb);
+            color: white;
 
-    /* checkout button*/
-    button.pre-order {
-        outline: 0;
-        border: 0;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        overflow: hidden;
-        background-image: linear-gradient(85deg, #61c7ef, #4833fb);
-        color: white;
-    }
+            p {
+                padding: 8px 17px;
+                border-right: 1px solid rgba(0, 0, 0, 0.4);
+            }
 
-    .pre-order p {
-        padding: 8px 17px;
-        border-right: 1px solid rgba(0, 0, 0, 0.4);
-    }
-
-    .button-action {
-        border-left: 1px solid rgba(255, 255, 255, .2);
-        padding: 5px 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: rgba(255, 255, 255, 0.7);
+            .button-action {
+                border-left: 1px solid rgba(255, 255, 255, .2);
+                padding: 5px 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: rgba(255, 255, 255, 0.7);
+            }
+        }
     }
 
 </style>

@@ -1,44 +1,39 @@
 <script setup>
-import { computed } from '@vue/reactivity';
-import { useImages } from '../../composables/images.js'
 import { getProducts } from '../../composables/products.js'
 import ProductItem from './ProductItem.vue';
 
-const { images } = useImages()
-const { products,
-        current_page,
-        from,
-        last_page,
-        per_page,
-        to,
-        total } = await getProducts()
+import { useProductStore }  from "../../store/products";
 
+const store = useProductStore()
 
-const productList = computed(() => products.map(p => {
-    const index = Math.floor(Math.random() * images.length)
-    const date = new Date(p.publication_date)
+const { data, error } = await getProducts()
 
-    return {
-        ...p,
-        image: `/assets/products/${images[index]}`,
-        category: p.categories[Math.floor(index / p.categories.length)],
-        date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
-        price: Math.ceil(Math.random() * 852)
-    }
-}))
+store.setProducts(data.value)
+
 </script>
 
 <template>
-    <div class="product-container">
-        <ProductItem v-for="p in productList" :key="p.id" :product="p" class="product-item"></ProductItem>
+    <div class="product-container" v-if="!error">
+        <!-- <div class="h1">Total {{ total }}</div> -->
+        <ProductItem v-for="p in store.products" :key="p.id" :product="p" class="product-item"></ProductItem>
     </div>
 </template>
 
 <style lang="scss" scoped>
     .product-container {
-        margin: 3rem 1rem;
+        margin: 1rem 1rem 0;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+    }
+
+    @media only screen and (max-width: 1000px) {
+        .product-container {
+            justify-content: center;
+
+            .product-item {
+                margin: 0.7rem;
+            }
+        }
     }
 </style>
